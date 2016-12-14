@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="description" content="Coding Dojo Python/Django Login and Registration assignment">
+	{% load staticfiles %}
+	<title>Login and Registration</title>
+</head>
+<body>
+	<main class="fifty">
+		{% if messages %}
+			<div class="notif red">
+				{% for message in messages %}
+					<p>{{message}}</p>
+				{% endfor %}
+			</div><!-- end_of_notif-->
+		{% endif %}
+		<section class="hundo">
+			<h1>Registration</h1>
+			<form class="eighty" action="/process/register" method="post">
+				{% csrf_token %}
+				<label class="forty" for="first_name">First Name:</label>
+				<input class="fifty" type="text" name="first_name" placeholder="Bob" id="first">
+				<label class="forty" for="last_name">Last Name:</label>
+				<input class="fifty" type="text" name="last_name" placeholder="Thebuilder">
+				<label class="forty" for="birthday">Birthday:</label>
+				<input class="fifty" type="text" name="birthday" placeholder="04/26/1985">
+				<label class="forty" for="email">Email Address:</label>
+				<input class="fifty" type="text" name="email" placeholder="bob@builder.com">
+				<label class="forty" for="password">Password:</label>
+				<input class="fifty" type="password" name="password">
+				<label class="forty" for="confirm">Confirm Password:</label>
+				<input class="fifty" type="password" name="confirm">
+				<input class="btn btn-pop" type="submit" name="register" value="Register">
+			</form>
+		</section>
+		<section class="hundo">
+			<h1>Login</h1>
+			<form class="eighty" action="/process/login" method="post">
+				{% csrf_token %}
+				<label for="email">Email</label>
+				<input type="text" name="email" placeholder="bob@builder.com">
+				<label for="password">Password</label>
+				<input type="password" name="password">
+				<input class="btn btn-pop" type="submit" name="login" value="Login">
+			</form>
+		</section>
+	</main>
+	<script type="text/javascript">
+		var first = document.getElementById('first');
+		first.focus();
+	</script>
+</body>
+</html>
